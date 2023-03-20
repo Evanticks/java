@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "app.name" . }}
+  labels:
+    app: {{ template "app.name" . }}
+    type: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "app.name" . }}
+      type: frontend
+  template:
+    metadata:
+      labels:
+        app: {{ template "app.name" . }}
+        type: frontend
+    spec:
+      containers:
+        - name: {{ template "app.name" . }}
+          image: evanticks/app-java:v1
+          ports:
+            - containerPort: {{ .Values.app.port }}
+              name: http-port

@@ -1,0 +1,1 @@
+La app se llama {{ template "app.name" . }} y ha sido desplegado a través del puerto {{ .Values.app.port }}

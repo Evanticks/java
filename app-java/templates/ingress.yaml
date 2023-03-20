@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "app.name" . }}
+spec:
+  rules:
+  - host: www.antonio.org
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ template "app.name" . }}
+            port:
+              number: 8080
